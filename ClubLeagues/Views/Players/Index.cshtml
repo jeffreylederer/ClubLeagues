@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ClubLeagues.Models.PlayerAllowDelete_Result>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LeagueLayout.cshtml";
+}
+@{
+    if (User.IsInRole("Admin") || User.IsInRole("LeagueAdmin"))
+    {
+        <p>
+            @Html.ActionLink("Add a Player", "Create", new {id=ViewBag.Id})
+        </p>
+    }
+}
+        <p>
+            Number of Players in League: @ViewBag.Count
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.FullNameSortParm , id=@ViewBag.Id})
+                </th>
+
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+
+                    <td>
+                        @{
+                            if (User.IsInRole("Admin") ||User.IsInRole("LeagueAdmin"))
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.id });
+                                @Html.Raw(" | ");
+                                if (item.cnt > 0)
+                                { 
+                                    <span style="color: gray;">Delete</span>
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id });
+                                }
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>

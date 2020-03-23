@@ -1,0 +1,105 @@
+﻿@using System.Activities.Statements
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -League Management Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @{
+        var leagueid = 0;
+        var cookie = Request.Cookies["leagueid"];
+        if (cookie != null)
+        {
+            int.TryParse(cookie.Value, out leagueid);
+        }
+    }
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Leagues", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Membership", "Index", "Membership")</li>
+
+                    @if (leagueid != 0)
+                    {
+
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">League Play<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Players", "Index", "Players", new {id = leagueid}, null)</li>
+                                <li>@Html.ActionLink("Schedule", "Index", "Schedules", new { id = leagueid }, null)</li>
+                                <li>@Html.ActionLink("Teams", "Index", "Teams", new { id = leagueid }, null)</li>
+                                <li>@Html.ActionLink("Matches", "Index", "Matches", new { id = leagueid}, null)</li>
+                                <li>@Html.ActionLink("Byes Report", "ByesReport", "Matches", new { id = leagueid }, null)</li>
+                                <li>@Html.ActionLink("Schedule Report", "GenerateReport", "GetSchedule", new { id = leagueid }, null)</li>
+                                
+
+                                @if (User.IsInRole("ClubAdmin") ||
+                                     User.IsInRole("LeagueAdmin"))
+                                {
+                                    <li>----------------------------</li>
+                                    <li>@Html.ActionLink("Create Matches", "CreateMatches", "Matches", new {id=leagueid},null)</li>
+                                    <li>@Html.ActionLink("Delete Matches", "ClearSchedule", "Matches", new {id=leagueid},null)</li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
+
+
+                    @if (User.IsInRole("ClubAdmin"))
+                    {
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Club Admin<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                                <li>@Html.ActionLink("Leagues", "Index", "Leagues")</li>
+                                <li>@Html.ActionLink("Rinks Play Order", "Index", "RinkOrders")</li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="menu-item dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Site Admin<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                                <li>@Html.ActionLink("Clubs", "Index", "Clubs")</li>
+                                <li>@Html.ActionLink("Error Log", "Index", "Elmah", new { type = "" }, new { target = "_blank" })</li>
+                            </ul>
+                        </li>
+                    }
+
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Jeffrey Lederer</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    </body>
+</html>

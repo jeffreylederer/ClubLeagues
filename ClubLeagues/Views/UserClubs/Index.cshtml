@@ -1,0 +1,42 @@
+﻿@model ClubLeagues.Models.UserClubViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Users of @Model.Name</h2>
+
+<p>
+    @Html.ActionLink("Add User", "Create", new {id=Model.clubid})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Raw("Role")
+        </th>
+        
+        
+        <th>
+            @Html.Raw("Club Name")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.userClubs) {
+       
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.User.username)
+            </td>
+            <td>
+              @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to Clubs", "Index","Clubs")
+</div>

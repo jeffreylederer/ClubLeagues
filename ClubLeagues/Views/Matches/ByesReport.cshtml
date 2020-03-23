@@ -1,0 +1,22 @@
+﻿@using ReportViewerForMvc
+
+@{
+    ViewBag.Title = "ByesReport";
+    Layout = "~/Views/Shared/_LeagueLayout.cshtml";
+}
+
+<h2>Byes Report</h2>
+<table>
+<tr>
+    <td>
+        <a href="/Home/Welcome">Back to Home Page</a>
+</tr>
+<tr>
+    <td>
+        @Html.ReportViewer(
+            ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer,
+            new { scrolling = "no" })
+    </td>
+</tr>
+</table>
+

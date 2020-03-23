@@ -1,0 +1,23 @@
+﻿@using ReportViewerForMvc
+
+@{
+    ViewBag.Title = "ScoringReport";
+    Layout = "~/Views/Shared/_LeagueLayout.cshtml";
+}
+
+<h2>Standings Report</h2>
+
+<table>
+    <tr>
+        <td>
+            @Html.ActionLink("Back to List", "Index", new { weekid = ViewBag.WeekId, id = ViewBag.Id })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ReportViewer(
+                ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer,
+                new { scrolling = "no" })
+        </td>
+    </tr>
+</table>

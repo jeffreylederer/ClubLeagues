@@ -1,0 +1,89 @@
+﻿@model ClubLeagues.Models.Schedule
+
+@{
+    ViewBag.Title = "Create";
+    int weeknumber = 1;
+}
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Add Week to league</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Leagueid)
+    @Html.HiddenFor(model => model.Cancelled)
+
+
+    <br /><br /><br /><br /><br /><br /><br/>
+    <div class="form-group">
+        @Html.LabelFor(model => model.GameDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+            @Html.TextBoxFor(m => m.GameDate, "{0:d}", new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GameDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new {id = Model.Leagueid})
+</div>
+
+<h2>Schedule So Far</h2>
+<table class="table-condensed table-striped">
+<tr>
+    <th>
+       Week Number
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.GameDate)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Cancelled)
+    </th>
+</tr>
+
+@foreach (var item in (IEnumerable<ClubLeagues.Models.Schedule>)ViewBag.Schedule)
+{
+    <tr>
+        <th>
+            @weeknumber
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cancelled)
+        </td>
+    </tr>
+     weeknumber++;
+}
+</table>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#GameDate').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                format: "mm/dd/yyyy",
+                language: "en"
+            });
+        });
+       
+    </script>
+}

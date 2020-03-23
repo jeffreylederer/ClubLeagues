@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6b8acc7dfa4442dcb100150ed812f679" Name="Diagram1">
+        <EntityTypeShape EntityType="LBClubsModel.Club" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBClubsModel.League" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBClubsModel.Match" Width="1.5" PointX="13" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBClubsModel.Membership" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBClubsModel.Player" Width="1.5" PointX="7.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBClubsModel.RinkOrder" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBClubsModel.Schedule" Width="1.5" PointX="7.5" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBClubsModel.Team" Width="1.5" PointX="9.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBClubsModel.User" Width="1.5" PointX="3" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBClubsModel.UserLeague" Width="1.5" PointX="10.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LBClubsModel.UserLeagueView" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="LBClubsModel.FK__League__ClubId__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK__Membershi__ClubI__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK__RinkOrder__ClubI__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK__User__ClubId__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK__Player__leagueid__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK__Schedule__League__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK__Team__leagueid__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK_League_RinkOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK_UserLeague_League" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK_Match_Schedule" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK_Match_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK_Match_Team1" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK_Player_Membership" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK__Players" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK__Players1" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK__Players2" ManuallyRouted="false" />
+        <AssociationConnector Association="LBClubsModel.FK_UserLeague_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LBClubsModel.UserClub" Width="1.5" PointX="5.25" PointY="18.625" />
+        <AssociationConnector Association="LBClubsModel.FK_UserClub_Club" />
+        <AssociationConnector Association="LBClubsModel.FK_UserClub_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
